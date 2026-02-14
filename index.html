@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050308" />
+  <title>RAVEKH — Presentación</title>
+  <style>
+    :root {
+      --c-black: #050308;
+      --c-black-soft: #0d0916;
+      --c-gold: #d6b25e;
+      --c-gold-soft: #a98843;
+      --c-white: #f5f5f5;
+      --c-purple: #6d01d1;
+      --c-purple-soft: #3d0b66;
+      --c-green: #25d366;
+      --bg-current: radial-gradient(circle at 20% 20%, rgba(214, 178, 94, 0.08), transparent 35%),
+                    radial-gradient(circle at 80% 0%, rgba(109, 1, 209, 0.12), transparent 40%),
+                    linear-gradient(160deg, #050308 0%, #0a0810 45%, #090713 100%);
+      --text-current: var(--c-white);
+      --accent-current: var(--c-gold);
+      --section-padding: clamp(1rem, 3vw, 3rem);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --duration: 700ms;
+      --radius-lg: 1.25rem;
+      --shadow-soft: 0 1rem 2.5rem rgba(0, 0, 0, 0.45);
+      --max-w: 1200px;
+      --halo: rgba(214, 178, 94, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      color: var(--text-current);
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg-current);
+      transition: background 800ms var(--ease), color 400ms var(--ease);
+      overflow: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 700ms var(--ease);
+    }
+
+    body::before {
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255, 255, 255, 0.55), transparent 60%),
+        radial-gradient(1.5px 1.5px at 30% 70%, rgba(214, 178, 94, 0.5), transparent 60%),
+        radial-gradient(2px 2px at 80% 30%, rgba(255, 255, 255, 0.45), transparent 60%),
+        radial-gradient(1px 1px at 65% 80%, rgba(214, 178, 94, 0.35), transparent 60%),
+        radial-gradient(1.5px 1.5px at 92% 60%, rgba(255, 255, 255, 0.5), transparent 60%),
+        radial-gradient(1px 1px at 12% 88%, rgba(109, 1, 209, 0.45), transparent 60%);
+      background-repeat: repeat;
+      opacity: 0.8;
+      animation: twinkle 7s linear infinite alternate;
+    }
+
+    body::after {
+      background:
+        linear-gradient(120deg, transparent 0 25%, rgba(214, 178, 94, 0.08) 25% 26%, transparent 26% 100%),
+        linear-gradient(60deg, transparent 0 68%, rgba(245, 245, 245, 0.05) 68% 69%, transparent 69% 100%);
+      mix-blend-mode: screen;
+      opacity: 0.45;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.55; }
+      to { opacity: 0.85; }
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .section {
+      min-height: 100vh;
+      height: 100vh;
+      scroll-snap-align: start;
+      padding: var(--section-padding);
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .section__inner {
+      width: 100%;
+      max-width: var(--max-w);
+      opacity: 0;
+      transform: translateY(2rem);
+      transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
+    }
+
+    .section.is-active .section__inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--accent-current);
+      font-weight: 600;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    .title-xl {
+      font-size: clamp(2rem, 8vw, 6rem);
+      line-height: 1.05;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .title-lg {
+      font-size: clamp(1.6rem, 5vw, 3rem);
+      line-height: 1.15;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      margin-top: 1rem;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      line-height: 1.6;
+      max-width: 60ch;
+      color: rgba(245, 245, 245, 0.92);
+    }
+
+    .btn,
+    button,
+    input,
+    textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    .btn {
+      margin-top: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      border: 1px solid rgba(214, 178, 94, 0.7);
+      background: linear-gradient(120deg, rgba(214, 178, 94, 0.2), rgba(214, 178, 94, 0.08));
+      color: var(--c-white);
+      padding: 0.85rem 1.25rem;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--c-gold);
+      box-shadow: 0 0.6rem 1.5rem rgba(214, 178, 94, 0.25);
+    }
+
+    :focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+      border-radius: 0.35rem;
+    }
+
+    .banner {
+      text-align: center;
+    }
+
+    .animated-text {
+      display: inline-grid;
+      min-width: 9ch;
+      margin-left: 0.25rem;
+      color: var(--accent-current);
+    }
+
+    .animated-text span {
+      grid-area: 1 / 1;
+      opacity: 0;
+      transform: translateY(0.45rem);
+      transition: opacity 320ms ease, transform 320ms ease;
+      will-change: opacity, transform;
+    }
+
+    .animated-text span.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mouse-indicator {
+      margin: 2rem auto 0;
+      width: 1.8rem;
+      height: 3rem;
+      border: 2px solid rgba(245, 245, 245, 0.75);
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .mouse-indicator::after {
+      content: "";
+      position: absolute;
+      top: 0.45rem;
+      left: 50%;
+      width: 0.35rem;
+      height: 0.6rem;
+      border-radius: 999px;
+      transform: translateX(-50%);
+      background: var(--accent-current);
+      animation: wheel 1.7s ease-in-out infinite;
+    }
+
+    @keyframes wheel {
+      0% { opacity: 0; transform: translate(-50%, 0); }
+      20% { opacity: 1; }
+      70% { opacity: 0.9; }
+      100% { opacity: 0; transform: translate(-50%, 1.25rem); }
+    }
+
+    .triple-grid {
+      display: grid;
+      gap: 1.25rem;
+      align-items: center;
+      grid-template-columns: 1fr;
+    }
+
+    .process-center {
+      position: relative;
+      width: min(72vw, 22rem);
+      aspect-ratio: 1;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 50% 50%, rgba(214, 178, 94, 0.15), rgba(5, 3, 8, 0.2) 64%, transparent 72%);
+      box-shadow: inset 0 0 0 1px rgba(214, 178, 94, 0.35), 0 0 3.5rem var(--halo);
+      overflow: hidden;
+    }
+
+    .process-center::before,
+    .process-center::after {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .process-center::before {
+      border: 2px dotted rgba(214, 178, 94, 0.58);
+      animation: spin 24s linear infinite;
+    }
+
+    .process-center::after {
+      inset: 2%;
+      border: 1px solid rgba(245, 245, 245, 0.2);
+      box-shadow: 0 0 2rem rgba(109, 1, 209, 0.2);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(1turn); }
+    }
+
+    .process-center img {
+      width: 66%;
+      height: 66%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid rgba(245, 245, 245, 0.5);
+      background: linear-gradient(135deg, rgba(214, 178, 94, 0.2), rgba(109, 1, 209, 0.35));
+    }
+
+    .process-copy {
+      background: rgba(12, 8, 17, 0.5);
+      border: 1px solid rgba(245, 245, 245, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(4px);
+    }
+
+    .cards {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      border: 1px solid rgba(245, 245, 245, 0.14);
+      background: linear-gradient(160deg, rgba(245, 245, 245, 0.08), rgba(245, 245, 245, 0.03));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+      color: var(--accent-current);
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      margin-top: 1rem;
+    }
+
+    .form {
+      display: grid;
+      gap: 0.75rem;
+      background: rgba(15, 11, 20, 0.65);
+      border: 1px solid rgba(245, 245, 245, 0.18);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+    }
+
+    label {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(245, 245, 245, 0.3);
+      padding: 0.7rem 0.8rem;
+      background: rgba(5, 3, 8, 0.65);
+      color: var(--c-white);
+    }
+
+    textarea { min-height: 7rem; resize: vertical; }
+
+    .footer {
+      text-align: center;
+    }
+
+    .wa-float {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      background: radial-gradient(circle at 30% 25%, #52e88d, var(--c-green));
+      color: #073b1e;
+      font-weight: 800;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 0.8rem 1.8rem rgba(0, 0, 0, 0.35);
+      z-index: 30;
+    }
+
+    .wa-float:hover,
+    .wa-float:focus-visible {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    body.theme-dark {
+      --bg-current: radial-gradient(circle at 15% 15%, rgba(245,245,245,0.06), transparent 28%),
+                    radial-gradient(circle at 85% 0%, rgba(214,178,94,0.1), transparent 38%),
+                    linear-gradient(150deg, #050308 0%, #0b0913 55%, #090713 100%);
+      --accent-current: #d6b25e;
+      --halo: rgba(214, 178, 94, 0.2);
+    }
+
+    body.theme-gold {
+      --bg-current: radial-gradient(circle at 20% 20%, rgba(214,178,94,0.22), transparent 36%),
+                    radial-gradient(circle at 78% 85%, rgba(214,178,94,0.14), transparent 34%),
+                    linear-gradient(160deg, #0b0803 0%, #1a1308 50%, #0d0903 100%);
+      --accent-current: #f0cc74;
+      --halo: rgba(214, 178, 94, 0.32);
+    }
+
+    body.theme-purple {
+      --bg-current: radial-gradient(circle at 22% 18%, rgba(109,1,209,0.36), transparent 38%),
+                    radial-gradient(circle at 80% 80%, rgba(214,178,94,0.12), transparent 34%),
+                    linear-gradient(155deg, #08030f 0%, #150625 55%, #050308 100%);
+      --accent-current: #cc9aff;
+      --halo: rgba(109, 1, 209, 0.35);
+    }
+
+    body.theme-light {
+      --bg-current: radial-gradient(circle at 15% 12%, rgba(214,178,94,0.2), transparent 32%),
+                    linear-gradient(150deg, #1f1b28 0%, #2a2335 35%, #181620 100%);
+      --accent-current: #ffe8b2;
+      --halo: rgba(245, 245, 245, 0.2);
+    }
+
+    @media (min-width: 860px) {
+      .triple-grid {
+        grid-template-columns: 1fr minmax(300px, 380px) 1fr;
+        gap: 2rem;
+      }
+
+      .cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem;
+      }
+
+      .section {
+        padding: clamp(1.5rem, 3vw, 3.5rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .section__inner {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="theme-dark">
+  <main class="app" id="app" aria-label="Landing de presentación RAVEKH">
+    <section class="section banner" data-theme="dark" data-bg="zodiac" data-endcolor="5,3,8" aria-labelledby="s1-title">
+      <div class="section__inner">
+        <p class="eyebrow">Objetivo</p>
+        <h1 id="s1-title" class="title-xl">Tu marca en digital, estilo
+          <span class="animated-text" aria-live="polite" aria-atomic="true">
+            <span>Creativo</span>
+            <span>Directo</span>
+            <span>y personal</span>
+          </span>
+        </h1>
+        <p class="subtitle">Creamos experiencias visuales para presentar tu negocio con claridad, autoridad y una estética inolvidable.</p>
+        <a class="btn" href="#contacto">Iniciar proyecto</a>
+        <div class="mouse-indicator" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="section" data-theme="gold" data-bg="blackGold" data-endcolor="26,19,8" aria-labelledby="s2-title">
+      <div class="section__inner">
+        <p class="eyebrow">Presentación</p>
+        <h2 id="s2-title" class="title-lg">Una landing que guía cada sección como una historia.</h2>
+        <p class="subtitle">Diseño one-page con navegación por scroll para mostrar propósito, proceso y resultados en una experiencia premium.</p>
+        <a class="btn" href="#caracteristicas">Ver características</a>
+      </div>
+    </section>
+
+    <section class="section" data-theme="dark" data-bg="stars" data-endcolor="8,7,19" aria-labelledby="s3-title">
+      <div class="section__inner triple-grid">
+        <div>
+          <p class="eyebrow">Proceso 2 · Contenido</p>
+          <h2 id="s3-title" class="title-lg">Contenido estratégico</h2>
+        </div>
+        <div class="process-center">
+          <!-- Reemplaza src por tu imagen local: assets/contenido.webp -->
+          <img src="assets/contenido.webp" alt="Contenido estratégico" loading="lazy" onerror="this.style.opacity='0.55';this.alt='Placeholder de contenido';" />
+        </div>
+        <article class="process-copy">
+          <p>A través de la comunicación, compartimos ideas y damos forma a su contenido.</p>
+          <a class="btn" href="#contacto">Quiero este enfoque</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" data-theme="purple" data-bg="nebula" data-endcolor="21,6,37" aria-labelledby="s4-title">
+      <div class="section__inner triple-grid">
+        <div>
+          <p class="eyebrow">Proceso 3 · Wireframe</p>
+          <h2 id="s4-title" class="title-lg">Estructura visual</h2>
+        </div>
+        <div class="process-center">
+          <!-- Reemplaza src por tu imagen local: assets/wireframe.webp -->
+          <img src="assets/wireframe.webp" alt="Wireframe de interfaz" loading="lazy" onerror="this.style.opacity='0.55';this.alt='Placeholder de wireframe';" />
+        </div>
+        <article class="process-copy">
+          <p>El boceto de wireframes es fundamental para organizar ideas y definir la experiencia del usuario con intención.</p>
+          <a class="btn" href="#contacto">Solicitar propuesta</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" data-theme="gold" data-bg="blackGold" data-endcolor="23,16,6" aria-labelledby="s5-title">
+      <div class="section__inner triple-grid">
+        <div>
+          <p class="eyebrow">Proceso 4 · Diseño</p>
+          <h2 id="s5-title" class="title-lg">Identidad que conecta</h2>
+        </div>
+        <div class="process-center">
+          <!-- Reemplaza src por tu imagen local: assets/design.webp -->
+          <img src="assets/design.webp" alt="Diseño visual RAVEKH" loading="lazy" onerror="this.style.opacity='0.55';this.alt='Placeholder de diseño';" />
+        </div>
+        <article class="process-copy">
+          <p>El diseño de Ravekh reflejará su identidad, transmitiendo confianza con una narrativa visual sofisticada.</p>
+          <a class="btn" href="#caracteristicas">Explorar detalles</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" data-theme="dark" data-bg="zodiac" data-endcolor="10,8,16" aria-labelledby="s6-title">
+      <div class="section__inner triple-grid">
+        <div>
+          <p class="eyebrow">Proceso 5 · Desarrollo</p>
+          <h2 id="s6-title" class="title-lg">Implementación robusta</h2>
+        </div>
+        <div class="process-center">
+          <!-- Reemplaza src por tu imagen local: assets/rocket-outline.svg -->
+          <img src="assets/rocket-outline.svg" alt="Desarrollo y lanzamiento" loading="lazy" onerror="this.style.opacity='0.55';this.alt='Placeholder de desarrollo';" />
+        </div>
+        <article class="process-copy">
+          <p>Diseño responsivo que se adhiere a estándares modernos, rendimiento y accesibilidad en todos los dispositivos.</p>
+          <a class="btn" href="#contacto">Lanzar mi sitio</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="caracteristicas" class="section" data-theme="light" data-bg="stars" data-endcolor="34,30,44" aria-labelledby="s7-title">
+      <div class="section__inner">
+        <p class="eyebrow">Características</p>
+        <h2 id="s7-title" class="title-lg">Todo lo que tu landing necesita</h2>
+        <div class="cards" role="list" aria-label="Características principales">
+          <article class="card" role="listitem">
+            <h3>Scroll Narrativo</h3>
+            <p>Secciones de 100vh con scroll-snap para una presentación limpia y envolvente.</p>
+          </article>
+          <article class="card" role="listitem">
+            <h3>Diseño Premium</h3>
+            <p>Paleta oscuro-dorado con acentos púrpura y texturas tipo constelación.</p>
+          </article>
+          <article class="card" role="listitem">
+            <h3>Base Técnica</h3>
+            <p>HTML, CSS y JS autocontenidos, listos para editar y publicar rápidamente.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section" data-theme="purple" data-bg="nebula" data-endcolor="23,7,40" aria-labelledby="s8-title">
+      <div class="section__inner">
+        <p class="eyebrow">Contacto</p>
+        <h2 id="s8-title" class="title-lg">Hablemos de tu próximo proyecto</h2>
+        <div class="contact-grid">
+          <form class="form" aria-label="Formulario de contacto">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required />
+            <label for="correo">Correo</label>
+            <input id="correo" name="correo" type="email" autocomplete="email" required />
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+            <button class="btn" type="submit">Enviar mensaje</button>
+          </form>
+          <aside class="process-copy">
+            <h3>RAVEKH Studio</h3>
+            <p class="subtitle" style="margin-top:.5rem;">Cuéntanos qué quieres comunicar y diseñamos una landing que convierta visitas en oportunidades reales.</p>
+            <p style="margin-top:1rem;"><strong>Email:</strong> hola@ravekh.com</p>
+            <p><strong>WhatsApp:</strong> +52 445 111 3370</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section footer" data-theme="dark" data-bg="zodiac" data-endcolor="5,3,8" aria-labelledby="s9-title">
+      <div class="section__inner">
+        <p class="eyebrow">RAVEKH</p>
+        <h2 id="s9-title" class="title-lg">Lleva tu negocio al siguiente nivel digital.</h2>
+        <p class="subtitle">Una presencia web sólida, elegante y estratégica para destacar en tu mercado.</p>
+        <a class="btn" href="#app">Volver arriba</a>
+      </div>
+    </section>
+  </main>
+
+  <a class="wa-float" href="https://api.whatsapp.com/send?phone=524451113370" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">WA</a>
+
+  <script>
+    (() => {
+      const app = document.getElementById('app');
+      const sections = Array.from(document.querySelectorAll('.section'));
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      const animatedTexts = Array.from(document.querySelectorAll('.animated-text'));
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const textTimers = new Map();
+
+      function setThemeFromSection(section) {
+        if (!section) return;
+        const theme = section.dataset.theme || 'dark';
+        document.body.classList.remove('theme-dark', 'theme-gold', 'theme-purple', 'theme-light');
+        document.body.classList.add(`theme-${theme}`);
+
+        const rgb = section.dataset.endcolor || '5,3,8';
+        if (themeMeta) {
+          themeMeta.setAttribute('content', `rgb(${rgb})`);
+        }
+      }
+
+      function playAnimatedText(block) {
+        if (!block || reduceMotion) return;
+        const words = Array.from(block.children);
+        words.forEach((word) => word.classList.remove('is-visible'));
+        let i = 0;
+        const timer = setInterval(() => {
+          words.forEach((word) => word.classList.remove('is-visible'));
+          words[i].classList.add('is-visible');
+          i = (i + 1) % words.length;
+        }, 1400);
+        textTimers.set(block, timer);
+        words[0].classList.add('is-visible');
+      }
+
+      function stopAnimatedText(block) {
+        const timer = textTimers.get(block);
+        if (timer) clearInterval(timer);
+        textTimers.delete(block);
+        Array.from(block.children).forEach((word) => word.classList.remove('is-visible'));
+      }
+
+      function restartAnimations(section) {
+        if (!section) return;
+        const textBlock = section.querySelector('.animated-text');
+        if (textBlock) {
+          stopAnimatedText(textBlock);
+          playAnimatedText(textBlock);
+        }
+      }
+
+      function observeSections() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const section = entry.target;
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+              sections.forEach((s) => s.classList.remove('is-active'));
+              section.classList.add('is-active');
+              setThemeFromSection(section);
+              restartAnimations(section);
+            } else {
+              section.classList.remove('is-active');
+              const animated = section.querySelector('.animated-text');
+              if (animated) stopAnimatedText(animated);
+            }
+          });
+        }, {
+          root: app,
+          threshold: [0.5, 0.75]
+        });
+
+        sections.forEach((section) => observer.observe(section));
+      }
+
+      document.querySelector('.form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Gracias. Tu mensaje fue preparado correctamente.');
+      });
+
+      sections[0]?.classList.add('is-active');
+      setThemeFromSection(sections[0]);
+      animatedTexts.forEach((block) => {
+        stopAnimatedText(block);
+      });
+      restartAnimations(sections[0]);
+      observeSections();
+    })();
+  </script>
+</body>
+</html>
