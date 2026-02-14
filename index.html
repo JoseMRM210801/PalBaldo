@@ -454,7 +454,7 @@
         <p class="reveal">Me das calma cuando me acelero, alegrÃ­a cuando me distraigo y paz cuando te miro. Eres esa persona que se siente como hogar, abrazo y sueÃ±o al mismo tiempo.</p>
         <figure class="halo-photo reveal">
           <!-- Cambia aquÃ­ la foto principal -->
-          <img src="assets/foto1.jpg" alt="Tu sonrisa" loading="lazy" onerror="this.closest('figure').classList.add('is-hidden')" />
+          <img src="assets/foto1.jpeg" alt="Tu sonrisa" loading="lazy" onerror="this.closest('figure').classList.add('is-hidden')" />
         </figure>
       </article>
     </section>
@@ -469,7 +469,7 @@
         </div>
         <div class="photo-slot reveal">
           <!-- Cambia aquÃ­ la foto de recuerdos -->
-          <img src="assets/foto2.jpg" alt="Nuestro recuerdo favorito" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML += '<p>Agrega aquÃ­ una foto nuestra en <span class=accent>assets/foto2.jpg</span> í²›</p>'" />
+          <img src="assets/foto2.jpeg" alt="Nuestro recuerdo favorito" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML += '<p>Agrega aquÃ­ una foto nuestra en <span class=accent>assets/foto2.jpg</span> ï¿½ï¿½ï¿½</p>'" />
         </div>
       </article>
     </section>
@@ -496,7 +496,7 @@
           <div class="step reveal"><strong>Paso 2:</strong> Crear recuerdos simples: paseos, fotos, canciones y risas inesperadas.</div>
           <div class="step reveal"><strong>Paso 3:</strong> Elegirnos todos los dÃ­as, con cariÃ±o, respeto y mucho amor.</div>
         </div>
-        <p class="cta-note reveal">Sigue bajandoâ€¦ tengo algo muy importante que preguntarte í²›</p>
+        <p class="cta-note reveal">Sigue bajandoâ€¦ tengo algo muy importante que preguntarte ğŸ’—</p>
       </article>
     </section>
 
@@ -504,12 +504,12 @@
       <article class="content proposal">
         <h2 class="reveal">Â¿Quieres ser mi novia?</h2>
         <div class="buttons reveal">
-          <button id="yesBtn" type="button">SÃ­ í²›</button>
-          <button id="noBtn" type="button">No í¸…</button>
+          <button id="yesBtn" type="button">SÃ­ ğŸ’—</button>
+          <button id="noBtn" type="button">No ğŸ˜…</button>
         </div>
         <p class="result" id="proposalResult" aria-live="polite"></p>
         <!-- Cambia aquÃ­ el nÃºmero de WhatsApp en el enlace -->
-        <a id="whatsBtn" class="btn-link is-hidden" href="https://api.whatsapp.com/send?phone=524451113370&amp;text=S%C3%AD%20quiero%20ser%20tu%20novia%20%F0%9F%92%9B" target="_blank" rel="noopener">EscrÃ­beme</a>
+        <a id="whatsBtn" class="btn-link is-hidden" href="https://api.whatsapp.com/send?phone=17735530482&amp;text=S%C3%AD%20quiero%20ser%20tu%20novia%20%F0%9F%92%9B" target="_blank" rel="noopener">EscrÃ­beme</a>
         <button id="topBtn" class="is-hidden" type="button">Volver arriba</button>
       </article>
     </section>
@@ -572,7 +572,7 @@
 
       const launchConfetti = () => {
         confetti.innerHTML = "";
-        const symbols = ["í²›", "âœ¨", "â­", "í¼™", "í²«"];
+        const symbols = ["ğŸ˜", "âœ¨", "â­", "ğŸ˜", "ğŸ’—ğŸ’—ğŸ’—"];
         for (let i = 0; i < 40; i++) {
           const item = document.createElement("i");
           item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
@@ -586,14 +586,14 @@
       };
 
       yesBtn.addEventListener("click", () => {
-        result.textContent = "SabÃ­a que sÃ­ í¸­í²› Prometo cuidarte, hacerte reÃ­r y elegirte todos los dÃ­as.";
+        result.textContent = "SabÃ­a que sÃ­ ğŸ’—ğŸ’—ğŸ’— Prometo cuidarte, hacerte reÃ­r y elegirte todos los dÃ­as.";
         whatsBtn.classList.remove("is-hidden");
         topBtn.classList.add("is-hidden");
         launchConfetti();
       });
 
       noBtn.addEventListener("click", () => {
-        result.textContent = "EstÃ¡ bien, igual querÃ­a decÃ­rtelo. Gracias por existir í²›";
+        result.textContent = "EstÃ¡ bien, igual querÃ­a decÃ­rtelo. Gracias por existir ï¿½ï¿½ï¿½";
         topBtn.classList.remove("is-hidden");
         whatsBtn.classList.add("is-hidden");
       });
