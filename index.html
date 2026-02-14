@@ -1,48 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#050308" />
-  <title>RAVEKH — Presentación</title>
+  <title>Tú y Yo ✨</title>
   <style>
     :root {
-      --c-black: #050308;
-      --c-black-soft: #0d0916;
-      --c-gold: #d6b25e;
-      --c-gold-soft: #a98843;
-      --c-white: #f5f5f5;
-      --c-purple: #6d01d1;
-      --c-purple-soft: #3d0b66;
-      --c-green: #25d366;
-      --bg-current: radial-gradient(circle at 20% 20%, rgba(214, 178, 94, 0.08), transparent 35%),
-                    radial-gradient(circle at 80% 0%, rgba(109, 1, 209, 0.12), transparent 40%),
-                    linear-gradient(160deg, #050308 0%, #0a0810 45%, #090713 100%);
-      --text-current: var(--c-white);
-      --accent-current: var(--c-gold);
-      --section-padding: clamp(1rem, 3vw, 3rem);
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --duration: 700ms;
-      --radius-lg: 1.25rem;
-      --shadow-soft: 0 1rem 2.5rem rgba(0, 0, 0, 0.45);
-      --max-w: 1200px;
-      --halo: rgba(214, 178, 94, 0.25);
+      --bg-deep: #050308;
+      --gold: #d6b25e;
+      --soft-white: #f5f5f5;
+      --purple: #6d01d1;
+      --panel: rgba(245, 245, 245, 0.08);
+      --panel-border: rgba(245, 245, 245, 0.2);
+      --text-main: #f5f5f5;
+      --text-muted: #d9d3c5;
+      --radius: 1.2rem;
+      --shadow-gold: 0 0 0.75rem rgba(214, 178, 94, 0.35), 0 0 2.2rem rgba(214, 178, 94, 0.18);
+      --transition: 360ms cubic-bezier(0.2, 0.7, 0, 1);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html,
     body {
       margin: 0;
-      padding: 0;
       height: 100%;
-      color: var(--text-current);
-      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
-      background: var(--bg-current);
-      transition: background 800ms var(--ease), color 400ms var(--ease);
-      overflow: hidden;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, system-ui, sans-serif;
+      color: var(--text-main);
+      background: var(--bg-deep);
     }
 
     body::before,
@@ -51,645 +37,610 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
-      transition: opacity 700ms var(--ease);
+      z-index: -2;
+      transition: opacity var(--transition), transform 900ms ease;
     }
 
     body::before {
-      background-image:
-        radial-gradient(2px 2px at 10% 20%, rgba(255, 255, 255, 0.55), transparent 60%),
-        radial-gradient(1.5px 1.5px at 30% 70%, rgba(214, 178, 94, 0.5), transparent 60%),
-        radial-gradient(2px 2px at 80% 30%, rgba(255, 255, 255, 0.45), transparent 60%),
-        radial-gradient(1px 1px at 65% 80%, rgba(214, 178, 94, 0.35), transparent 60%),
-        radial-gradient(1.5px 1.5px at 92% 60%, rgba(255, 255, 255, 0.5), transparent 60%),
-        radial-gradient(1px 1px at 12% 88%, rgba(109, 1, 209, 0.45), transparent 60%);
-      background-repeat: repeat;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(214, 178, 94, 0.16), transparent 35%),
+        radial-gradient(circle at 88% 9%, rgba(109, 1, 209, 0.12), transparent 32%),
+        radial-gradient(circle at 30% 84%, rgba(255, 255, 255, 0.08), transparent 26%),
+        radial-gradient(circle at 68% 67%, rgba(214, 178, 94, 0.12), transparent 30%),
+        radial-gradient(#ffffff 1.1px, transparent 1.2px);
+      background-size: auto, auto, auto, auto, 36px 36px;
       opacity: 0.8;
-      animation: twinkle 7s linear infinite alternate;
     }
 
     body::after {
+      z-index: -1;
       background:
-        linear-gradient(120deg, transparent 0 25%, rgba(214, 178, 94, 0.08) 25% 26%, transparent 26% 100%),
-        linear-gradient(60deg, transparent 0 68%, rgba(245, 245, 245, 0.05) 68% 69%, transparent 69% 100%);
-      mix-blend-mode: screen;
-      opacity: 0.45;
+        linear-gradient(135deg, rgba(5, 3, 8, 0.97), rgba(13, 8, 18, 0.9)),
+        radial-gradient(circle at 50% 50%, rgba(214, 178, 94, 0.16), transparent 50%);
+      opacity: 1;
     }
 
-    @keyframes twinkle {
-      from { opacity: 0.55; }
-      to { opacity: 0.85; }
+    body.bg-zodiac::after {
+      background:
+        linear-gradient(115deg, rgba(5, 3, 8, 0.96), rgba(20, 12, 23, 0.9)),
+        radial-gradient(circle at 25% 35%, rgba(214, 178, 94, 0.22), transparent 45%);
+    }
+
+    body.bg-stars::after {
+      background:
+        linear-gradient(145deg, rgba(7, 4, 11, 0.97), rgba(15, 11, 25, 0.9)),
+        radial-gradient(circle at 78% 20%, rgba(214, 178, 94, 0.18), transparent 45%);
+    }
+
+    body.bg-blackGold::after {
+      background:
+        linear-gradient(145deg, rgba(5, 3, 8, 0.98), rgba(27, 18, 7, 0.86)),
+        radial-gradient(circle at 45% 15%, rgba(214, 178, 94, 0.2), transparent 48%);
+    }
+
+    body.bg-nebula::after {
+      background:
+        linear-gradient(145deg, rgba(7, 4, 11, 0.96), rgba(22, 7, 34, 0.9)),
+        radial-gradient(circle at 50% 55%, rgba(109, 1, 209, 0.2), transparent 45%),
+        radial-gradient(circle at 82% 10%, rgba(214, 178, 94, 0.15), transparent 35%);
+    }
+
+    body.bg-aurora::after {
+      background:
+        linear-gradient(145deg, rgba(5, 3, 8, 0.96), rgba(13, 20, 19, 0.88)),
+        radial-gradient(circle at 50% 50%, rgba(214, 178, 94, 0.18), transparent 45%),
+        radial-gradient(circle at 30% 72%, rgba(109, 1, 209, 0.12), transparent 35%);
+    }
+
+    body.bg-eternal::after {
+      background:
+        linear-gradient(145deg, rgba(5, 3, 8, 0.97), rgba(18, 12, 8, 0.9)),
+        radial-gradient(circle at 40% 25%, rgba(214, 178, 94, 0.2), transparent 42%);
     }
 
     .app {
-      position: relative;
-      z-index: 1;
       height: 100vh;
       overflow-y: auto;
-      overflow-x: hidden;
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
     }
 
-    .section {
+    .slide {
       min-height: 100vh;
       height: 100vh;
       scroll-snap-align: start;
-      padding: var(--section-padding);
       display: grid;
-      align-items: center;
-      justify-items: center;
-      position: relative;
-      isolation: isolate;
-    }
-
-    .section__inner {
-      width: 100%;
-      max-width: var(--max-w);
-      opacity: 0;
-      transform: translateY(2rem);
-      transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
-    }
-
-    .section.is-active .section__inner {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .eyebrow {
-      margin: 0 0 0.5rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      font-size: 0.72rem;
-      color: var(--accent-current);
-      font-weight: 600;
-    }
-
-    h1, h2, h3, p {
-      margin: 0;
-    }
-
-    .title-xl {
-      font-size: clamp(2rem, 8vw, 6rem);
-      line-height: 1.05;
-      font-weight: 700;
-      text-wrap: balance;
-    }
-
-    .title-lg {
-      font-size: clamp(1.6rem, 5vw, 3rem);
-      line-height: 1.15;
-      font-weight: 700;
-      text-wrap: balance;
-    }
-
-    .subtitle {
-      margin-top: 1rem;
-      font-size: clamp(1rem, 2.5vw, 1.35rem);
-      line-height: 1.6;
-      max-width: 60ch;
-      color: rgba(245, 245, 245, 0.92);
-    }
-
-    .btn,
-    button,
-    input,
-    textarea {
-      font: inherit;
-      color: inherit;
-    }
-
-    .btn {
-      margin-top: 1.5rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      border: 1px solid rgba(214, 178, 94, 0.7);
-      background: linear-gradient(120deg, rgba(214, 178, 94, 0.2), rgba(214, 178, 94, 0.08));
-      color: var(--c-white);
-      padding: 0.85rem 1.25rem;
-      border-radius: 999px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: translateY(-2px);
-      border-color: var(--c-gold);
-      box-shadow: 0 0.6rem 1.5rem rgba(214, 178, 94, 0.25);
-    }
-
-    :focus-visible {
-      outline: 2px solid #fff;
-      outline-offset: 3px;
-      border-radius: 0.35rem;
-    }
-
-    .banner {
-      text-align: center;
-    }
-
-    .animated-text {
-      display: inline-grid;
-      min-width: 9ch;
-      margin-left: 0.25rem;
-      color: var(--accent-current);
-    }
-
-    .animated-text span {
-      grid-area: 1 / 1;
-      opacity: 0;
-      transform: translateY(0.45rem);
-      transition: opacity 320ms ease, transform 320ms ease;
-      will-change: opacity, transform;
-    }
-
-    .animated-text span.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .mouse-indicator {
-      margin: 2rem auto 0;
-      width: 1.8rem;
-      height: 3rem;
-      border: 2px solid rgba(245, 245, 245, 0.75);
-      border-radius: 999px;
+      place-items: center;
+      padding: clamp(1rem, 3vw, 2rem);
       position: relative;
     }
 
-    .mouse-indicator::after {
+    .constellation {
+      position: absolute;
+      inset: 8% auto auto 10%;
+      width: min(75vw, 440px);
+      height: min(46vh, 280px);
+      pointer-events: none;
+      opacity: 0.38;
+      z-index: 0;
+    }
+
+    .constellation span {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .constellation::before,
+    .constellation::after {
       content: "";
       position: absolute;
-      top: 0.45rem;
-      left: 50%;
+      inset: 0;
+      border: 1px solid rgba(214, 178, 94, 0.35);
+      clip-path: polygon(8% 62%, 24% 18%, 47% 27%, 64% 8%, 86% 44%, 72% 76%, 44% 91%, 18% 72%);
+      opacity: 0.65;
+    }
+
+    .card,
+    .content {
+      position: relative;
+      z-index: 1;
+      width: min(980px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+      padding: clamp(1rem, 3.4vw, 2.2rem);
+    }
+
+    h1, h2, h3 { margin: 0 0 0.7rem; line-height: 1.1; letter-spacing: 0.02em; }
+    h1 { font-size: clamp(2.1rem, 8.4vw, 4.4rem); }
+    h2 { font-size: clamp(1.5rem, 5.8vw, 3rem); color: var(--gold); }
+
+    p, li {
+      font-size: clamp(1rem, 3.8vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin: 0.4rem 0;
+    }
+
+    .accent { color: var(--gold); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .reveal.animate-in {
+      animation: rise var(--transition) forwards;
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .typing {
+      min-height: 2.2em;
+      display: inline-flex;
+      align-items: center;
+      border-right: 2px solid var(--gold);
+      padding-right: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 100%;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink { 50% { border-right-color: transparent; } }
+
+    .mouse {
+      margin-top: 1.8rem;
+      width: 2rem;
+      height: 3.2rem;
+      border: 2px solid rgba(245, 245, 245, 0.85);
+      border-radius: 1.2rem;
+      position: relative;
+    }
+
+    .mouse::before {
+      content: "";
       width: 0.35rem;
-      height: 0.6rem;
-      border-radius: 999px;
+      height: 0.65rem;
+      background: var(--gold);
+      border-radius: 0.4rem;
+      position: absolute;
+      left: 50%;
+      top: 0.5rem;
       transform: translateX(-50%);
-      background: var(--accent-current);
-      animation: wheel 1.7s ease-in-out infinite;
+      animation: wheel 1.4s infinite;
     }
 
     @keyframes wheel {
       0% { opacity: 0; transform: translate(-50%, 0); }
-      20% { opacity: 1; }
-      70% { opacity: 0.9; }
-      100% { opacity: 0; transform: translate(-50%, 1.25rem); }
+      45% { opacity: 1; }
+      100% { opacity: 0; transform: translate(-50%, 1rem); }
     }
 
-    .triple-grid {
-      display: grid;
-      gap: 1.25rem;
-      align-items: center;
-      grid-template-columns: 1fr;
-    }
+    .center-wrap { text-align: center; display: grid; gap: 1rem; place-items: center; }
 
-    .process-center {
-      position: relative;
-      width: min(72vw, 22rem);
+    .halo-photo {
+      width: min(65vw, 260px);
       aspect-ratio: 1;
-      margin: 0 auto;
       border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle at 50% 50%, rgba(214, 178, 94, 0.15), rgba(5, 3, 8, 0.2) 64%, transparent 72%);
-      box-shadow: inset 0 0 0 1px rgba(214, 178, 94, 0.35), 0 0 3.5rem var(--halo);
-      overflow: hidden;
+      padding: 0.35rem;
+      background: radial-gradient(circle at 30% 20%, rgba(214, 178, 94, 0.8), rgba(214, 178, 94, 0.18), transparent 70%);
+      box-shadow: var(--shadow-gold);
+      position: relative;
+      overflow: visible;
+      margin: 0.8rem auto;
     }
 
-    .process-center::before,
-    .process-center::after {
+    .halo-photo::before,
+    .halo-photo::after {
       content: "";
       position: absolute;
-      inset: 8%;
+      inset: -10%;
       border-radius: 50%;
-      pointer-events: none;
+      border: 1px dashed rgba(214, 178, 94, 0.45);
+      animation: spin 18s linear infinite;
     }
 
-    .process-center::before {
-      border: 2px dotted rgba(214, 178, 94, 0.58);
-      animation: spin 24s linear infinite;
-    }
+    .halo-photo::after { inset: -17%; animation-duration: 25s; animation-direction: reverse; }
 
-    .process-center::after {
-      inset: 2%;
-      border: 1px solid rgba(245, 245, 245, 0.2);
-      box-shadow: 0 0 2rem rgba(109, 1, 209, 0.2);
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    @keyframes spin {
-      to { transform: rotate(1turn); }
-    }
-
-    .process-center img {
-      width: 66%;
-      height: 66%;
+    .halo-photo img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       border-radius: 50%;
-      border: 2px solid rgba(245, 245, 245, 0.5);
-      background: linear-gradient(135deg, rgba(214, 178, 94, 0.2), rgba(109, 1, 209, 0.35));
+      border: 2px solid rgba(245, 245, 245, 0.7);
+      display: block;
+      background: rgba(255,255,255,0.07);
     }
 
-    .process-copy {
-      background: rgba(12, 8, 17, 0.5);
-      border: 1px solid rgba(245, 245, 245, 0.1);
-      border-radius: var(--radius-lg);
-      padding: 1rem;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(4px);
-    }
-
-    .cards {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: 1fr;
-      margin-top: 1.5rem;
-    }
-
-    .card {
-      border-radius: var(--radius-lg);
-      padding: 1rem;
-      border: 1px solid rgba(245, 245, 245, 0.14);
-      background: linear-gradient(160deg, rgba(245, 245, 245, 0.08), rgba(245, 245, 245, 0.03));
-      box-shadow: var(--shadow-soft);
-    }
-
-    .card h3 {
-      color: var(--accent-current);
-      margin-bottom: 0.5rem;
-      font-size: 1.15rem;
-    }
-
-    .contact-grid {
+    .grid-3 {
       display: grid;
       gap: 1rem;
       grid-template-columns: 1fr;
       margin-top: 1rem;
     }
 
-    .form {
-      display: grid;
-      gap: 0.75rem;
-      background: rgba(15, 11, 20, 0.65);
-      border: 1px solid rgba(245, 245, 245, 0.18);
-      border-radius: var(--radius-lg);
+    .story {
+      background: rgba(5, 3, 8, 0.45);
+      border: 1px solid rgba(245, 245, 245, 0.15);
+      border-radius: 1rem;
       padding: 1rem;
     }
 
-    label {
-      font-size: 0.95rem;
-      font-weight: 500;
+    .photo-slot {
+      margin-top: 1rem;
+      border: 1px dashed rgba(214, 178, 94, 0.55);
+      border-radius: 1rem;
+      padding: 0.6rem;
+      min-height: 150px;
+      background: rgba(245,245,245,0.03);
     }
 
-    input,
-    textarea {
+    .photo-slot img {
       width: 100%;
-      border-radius: 0.75rem;
-      border: 1px solid rgba(245, 245, 245, 0.3);
-      padding: 0.7rem 0.8rem;
-      background: rgba(5, 3, 8, 0.65);
-      color: var(--c-white);
+      min-height: 140px;
+      max-height: 240px;
+      object-fit: cover;
+      border-radius: 0.7rem;
+      display: block;
+      background: rgba(255,255,255,0.08);
     }
 
-    textarea { min-height: 7rem; resize: vertical; }
-
-    .footer {
-      text-align: center;
-    }
-
-    .wa-float {
-      position: fixed;
-      right: 1rem;
-      bottom: 1rem;
-      width: 3.2rem;
-      height: 3.2rem;
-      border-radius: 50%;
+    ul.pretty {
+      list-style: none;
+      padding: 0;
       display: grid;
+      gap: 0.7rem;
+    }
+
+    ul.pretty li {
+      padding-left: 1.6rem;
+      position: relative;
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    .slide.in-view ul.pretty li {
+      animation: popIn 420ms ease forwards;
+    }
+
+    .slide.in-view ul.pretty li:nth-child(2) { animation-delay: 120ms; }
+    .slide.in-view ul.pretty li:nth-child(3) { animation-delay: 200ms; }
+    .slide.in-view ul.pretty li:nth-child(4) { animation-delay: 280ms; }
+    .slide.in-view ul.pretty li:nth-child(5) { animation-delay: 360ms; }
+
+    @keyframes popIn { to { opacity: 1; transform: translateX(0); } }
+
+    .step-wrap {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .step {
+      border-left: 3px solid var(--gold);
+      padding: 0.8rem 0.8rem 0.8rem 1rem;
+      background: rgba(5, 3, 8, 0.45);
+      border-radius: 0.7rem;
+    }
+
+    .cta-note { margin-top: 1rem; font-weight: 600; color: var(--soft-white); }
+
+    .proposal {
+      text-align: center;
+      display: grid;
+      gap: 1rem;
       place-items: center;
+    }
+
+    .proposal h2 {
+      font-size: clamp(2rem, 10vw, 4.8rem);
+      color: var(--soft-white);
+      text-shadow: var(--shadow-gold);
+    }
+
+    .buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+
+    button,
+    .btn-link {
+      border: 1px solid rgba(214, 178, 94, 0.9);
+      background: linear-gradient(180deg, rgba(214,178,94,0.2), rgba(214,178,94,0.1));
+      color: var(--soft-white);
+      border-radius: 999px;
+      padding: 0.8rem 1.3rem;
+      min-height: 48px;
+      min-width: 120px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-gold);
+      transition: transform 180ms ease, background 180ms ease;
       text-decoration: none;
-      background: radial-gradient(circle at 30% 25%, #52e88d, var(--c-green));
-      color: #073b1e;
-      font-weight: 800;
-      border: 2px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 0.8rem 1.8rem rgba(0, 0, 0, 0.35);
-      z-index: 30;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .wa-float:hover,
-    .wa-float:focus-visible {
-      transform: translateY(-2px) scale(1.02);
+    button:hover,
+    .btn-link:hover { transform: translateY(-2px); }
+    button:active,
+    .btn-link:active { transform: translateY(0); }
+
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(5, 3, 8, 0.95);
     }
 
-    body.theme-dark {
-      --bg-current: radial-gradient(circle at 15% 15%, rgba(245,245,245,0.06), transparent 28%),
-                    radial-gradient(circle at 85% 0%, rgba(214,178,94,0.1), transparent 38%),
-                    linear-gradient(150deg, #050308 0%, #0b0913 55%, #090713 100%);
-      --accent-current: #d6b25e;
-      --halo: rgba(214, 178, 94, 0.2);
+    .result {
+      min-height: 2.8rem;
+      font-weight: 600;
+      color: var(--soft-white);
+      max-width: 70ch;
+      margin-inline: auto;
     }
 
-    body.theme-gold {
-      --bg-current: radial-gradient(circle at 20% 20%, rgba(214,178,94,0.22), transparent 36%),
-                    radial-gradient(circle at 78% 85%, rgba(214,178,94,0.14), transparent 34%),
-                    linear-gradient(160deg, #0b0803 0%, #1a1308 50%, #0d0903 100%);
-      --accent-current: #f0cc74;
-      --halo: rgba(214, 178, 94, 0.32);
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 12;
+      display: none;
     }
 
-    body.theme-purple {
-      --bg-current: radial-gradient(circle at 22% 18%, rgba(109,1,209,0.36), transparent 38%),
-                    radial-gradient(circle at 80% 80%, rgba(214,178,94,0.12), transparent 34%),
-                    linear-gradient(155deg, #08030f 0%, #150625 55%, #050308 100%);
-      --accent-current: #cc9aff;
-      --halo: rgba(109, 1, 209, 0.35);
+    .confetti.active { display: block; }
+
+    .confetti i {
+      position: absolute;
+      font-style: normal;
+      font-size: 1.1rem;
+      top: -5vh;
+      animation: fall linear forwards;
     }
 
-    body.theme-light {
-      --bg-current: radial-gradient(circle at 15% 12%, rgba(214,178,94,0.2), transparent 32%),
-                    linear-gradient(150deg, #1f1b28 0%, #2a2335 35%, #181620 100%);
-      --accent-current: #ffe8b2;
-      --halo: rgba(245, 245, 245, 0.2);
-    }
-
-    @media (min-width: 860px) {
-      .triple-grid {
-        grid-template-columns: 1fr minmax(300px, 380px) 1fr;
-        gap: 2rem;
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
       }
+    }
 
-      .cards {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+    .is-hidden { display: none !important; }
 
-      .contact-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.4rem;
-      }
-
-      .section {
-        padding: clamp(1.5rem, 3vw, 3.5rem);
-      }
+    @media (min-width: 760px) {
+      .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
         scroll-behavior: auto !important;
       }
-
-      .section__inner {
-        opacity: 1 !important;
-        transform: none !important;
-      }
+      .typing { border-right: 0; }
     }
   </style>
 </head>
-<body class="theme-dark">
-  <main class="app" id="app" aria-label="Landing de presentación RAVEKH">
-    <section class="section banner" data-theme="dark" data-bg="zodiac" data-endcolor="5,3,8" aria-labelledby="s1-title">
-      <div class="section__inner">
-        <p class="eyebrow">Objetivo</p>
-        <h1 id="s1-title" class="title-xl">Tu marca en digital, estilo
-          <span class="animated-text" aria-live="polite" aria-atomic="true">
-            <span>Creativo</span>
-            <span>Directo</span>
-            <span>y personal</span>
-          </span>
-        </h1>
-        <p class="subtitle">Creamos experiencias visuales para presentar tu negocio con claridad, autoridad y una estética inolvidable.</p>
-        <a class="btn" href="#contacto">Iniciar proyecto</a>
-        <div class="mouse-indicator" aria-hidden="true"></div>
+<body class="bg-zodiac">
+  <main class="app" id="app">
+    <section class="slide" id="tu" data-bg="zodiac" data-endcolor="5,3,8" aria-label="Sección Tú">
+      <div class="constellation" aria-hidden="true">
+        <span style="left:8%;top:65%"></span><span style="left:23%;top:20%"></span><span style="left:45%;top:30%"></span>
+        <span style="left:63%;top:11%"></span><span style="left:84%;top:46%"></span><span style="left:70%;top:74%"></span>
       </div>
+      <article class="content center-wrap">
+        <h1 class="reveal">Tú ✨</h1>
+        <p class="typing" id="typingText" aria-live="polite">Me encantas</p>
+        <p class="reveal">Desde que estás en mi vida, todo tiene un brillo distinto.</p>
+        <div class="mouse reveal" aria-hidden="true"></div>
+      </article>
     </section>
 
-    <section class="section" data-theme="gold" data-bg="blackGold" data-endcolor="26,19,8" aria-labelledby="s2-title">
-      <div class="section__inner">
-        <p class="eyebrow">Presentación</p>
-        <h2 id="s2-title" class="title-lg">Una landing que guía cada sección como una historia.</h2>
-        <p class="subtitle">Diseño one-page con navegación por scroll para mostrar propósito, proceso y resultados en una experiencia premium.</p>
-        <a class="btn" href="#caracteristicas">Ver características</a>
-      </div>
+    <section class="slide" id="sentir" data-bg="stars" data-endcolor="11,8,20" aria-label="Sección Lo que me haces sentir">
+      <article class="content center-wrap">
+        <h2 class="reveal">Lo que me haces sentir</h2>
+        <p class="reveal">Me das calma cuando me acelero, alegría cuando me distraigo y paz cuando te miro. Eres esa persona que se siente como hogar, abrazo y sueño al mismo tiempo.</p>
+        <figure class="halo-photo reveal">
+          <!-- Cambia aquí la foto principal -->
+          <img src="assets/foto1.jpg" alt="Tu sonrisa" loading="lazy" onerror="this.closest('figure').classList.add('is-hidden')" />
+        </figure>
+      </article>
     </section>
 
-    <section class="section" data-theme="dark" data-bg="stars" data-endcolor="8,7,19" aria-labelledby="s3-title">
-      <div class="section__inner triple-grid">
-        <div>
-          <p class="eyebrow">Proceso 2 · Contenido</p>
-          <h2 id="s3-title" class="title-lg">Contenido estratégico</h2>
+    <section class="slide" id="momentos" data-bg="blackGold" data-endcolor="20,13,7" aria-label="Sección Nuestros momentos">
+      <article class="content">
+        <h2 class="reveal">Nuestros momentos</h2>
+        <div class="grid-3">
+          <article class="story reveal"><h3>1. Tu risa</h3><p>Ese día en que no parábamos de reír por nada, y supe que contigo todo se vuelve ligero.</p></article>
+          <article class="story reveal"><h3>2. Miradas</h3><p>Cuando me miras bonito, el mundo baja el volumen y solo quiero quedarme ahí contigo.</p></article>
+          <article class="story reveal"><h3>3. Detallitos</h3><p>Tus mensajes, tus gestos, tu forma de cuidarme... todo eso me enamora más de ti.</p></article>
         </div>
-        <div class="process-center">
-          <!-- Reemplaza src por tu imagen local: assets/contenido.webp -->
-          <img src="assets/contenido.webp" alt="Contenido estratégico" loading="lazy" onerror="this.style.opacity='0.55';this.alt='Placeholder de contenido';" />
+        <div class="photo-slot reveal">
+          <!-- Cambia aquí la foto de recuerdos -->
+          <img src="assets/foto2.jpg" alt="Nuestro recuerdo favorito" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML += '<p>Agrega aquí una foto nuestra en <span class=accent>assets/foto2.jpg</span> ���</p>'" />
         </div>
-        <article class="process-copy">
-          <p>A través de la comunicación, compartimos ideas y damos forma a su contenido.</p>
-          <a class="btn" href="#contacto">Quiero este enfoque</a>
-        </article>
-      </div>
+      </article>
     </section>
 
-    <section class="section" data-theme="purple" data-bg="nebula" data-endcolor="21,6,37" aria-labelledby="s4-title">
-      <div class="section__inner triple-grid">
-        <div>
-          <p class="eyebrow">Proceso 3 · Wireframe</p>
-          <h2 id="s4-title" class="title-lg">Estructura visual</h2>
-        </div>
-        <div class="process-center">
-          <!-- Reemplaza src por tu imagen local: assets/wireframe.webp -->
-          <img src="assets/wireframe.webp" alt="Wireframe de interfaz" loading="lazy" onerror="this.style.opacity='0.55';this.alt='Placeholder de wireframe';" />
-        </div>
-        <article class="process-copy">
-          <p>El boceto de wireframes es fundamental para organizar ideas y definir la experiencia del usuario con intención.</p>
-          <a class="btn" href="#contacto">Solicitar propuesta</a>
-        </article>
-      </div>
+    <section class="slide" id="admiro" data-bg="nebula" data-endcolor="14,7,27" aria-label="Sección Lo que admiro de ti">
+      <article class="content">
+        <h2 class="reveal">Lo que admiro de ti</h2>
+        <ul class="pretty">
+          <li>Tu forma de ser tan auténtica, sin pretender nada.</li>
+          <li>Tu fuerza para salir adelante incluso en días difíciles.</li>
+          <li>Tu ternura para cuidar a quienes amas.</li>
+          <li>Tu manera de hacerme sentir importante con cosas simples.</li>
+          <li>La paz que me das solo con estar cerca.</li>
+        </ul>
+      </article>
     </section>
 
-    <section class="section" data-theme="gold" data-bg="blackGold" data-endcolor="23,16,6" aria-labelledby="s5-title">
-      <div class="section__inner triple-grid">
-        <div>
-          <p class="eyebrow">Proceso 4 · Diseño</p>
-          <h2 id="s5-title" class="title-lg">Identidad que conecta</h2>
+    <section class="slide" id="quiero" data-bg="aurora" data-endcolor="8,16,16" aria-label="Sección Lo que quiero contigo">
+      <article class="content">
+        <h2 class="reveal">Lo que quiero contigo</h2>
+        <p class="reveal">No quiero promesas perfectas, quiero una historia real contigo, de esas que se construyen paso a paso y con el corazón abierto.</p>
+        <div class="step-wrap">
+          <div class="step reveal"><strong>Paso 1:</strong> Más citas bonitas y conversaciones largas que se sienten como refugio.</div>
+          <div class="step reveal"><strong>Paso 2:</strong> Crear recuerdos simples: paseos, fotos, canciones y risas inesperadas.</div>
+          <div class="step reveal"><strong>Paso 3:</strong> Elegirnos todos los días, con cariño, respeto y mucho amor.</div>
         </div>
-        <div class="process-center">
-          <!-- Reemplaza src por tu imagen local: assets/design.webp -->
-          <img src="assets/design.webp" alt="Diseño visual RAVEKH" loading="lazy" onerror="this.style.opacity='0.55';this.alt='Placeholder de diseño';" />
-        </div>
-        <article class="process-copy">
-          <p>El diseño de Ravekh reflejará su identidad, transmitiendo confianza con una narrativa visual sofisticada.</p>
-          <a class="btn" href="#caracteristicas">Explorar detalles</a>
-        </article>
-      </div>
+        <p class="cta-note reveal">Sigue bajando… tengo algo muy importante que preguntarte ���</p>
+      </article>
     </section>
 
-    <section class="section" data-theme="dark" data-bg="zodiac" data-endcolor="10,8,16" aria-labelledby="s6-title">
-      <div class="section__inner triple-grid">
-        <div>
-          <p class="eyebrow">Proceso 5 · Desarrollo</p>
-          <h2 id="s6-title" class="title-lg">Implementación robusta</h2>
+    <section class="slide" id="final" data-bg="eternal" data-endcolor="18,12,8" aria-label="Sección final: propuesta">
+      <article class="content proposal">
+        <h2 class="reveal">¿Quieres ser mi novia?</h2>
+        <div class="buttons reveal">
+          <button id="yesBtn" type="button">Sí ���</button>
+          <button id="noBtn" type="button">No ���</button>
         </div>
-        <div class="process-center">
-          <!-- Reemplaza src por tu imagen local: assets/rocket-outline.svg -->
-          <img src="assets/rocket-outline.svg" alt="Desarrollo y lanzamiento" loading="lazy" onerror="this.style.opacity='0.55';this.alt='Placeholder de desarrollo';" />
-        </div>
-        <article class="process-copy">
-          <p>Diseño responsivo que se adhiere a estándares modernos, rendimiento y accesibilidad en todos los dispositivos.</p>
-          <a class="btn" href="#contacto">Lanzar mi sitio</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="caracteristicas" class="section" data-theme="light" data-bg="stars" data-endcolor="34,30,44" aria-labelledby="s7-title">
-      <div class="section__inner">
-        <p class="eyebrow">Características</p>
-        <h2 id="s7-title" class="title-lg">Todo lo que tu landing necesita</h2>
-        <div class="cards" role="list" aria-label="Características principales">
-          <article class="card" role="listitem">
-            <h3>Scroll Narrativo</h3>
-            <p>Secciones de 100vh con scroll-snap para una presentación limpia y envolvente.</p>
-          </article>
-          <article class="card" role="listitem">
-            <h3>Diseño Premium</h3>
-            <p>Paleta oscuro-dorado con acentos púrpura y texturas tipo constelación.</p>
-          </article>
-          <article class="card" role="listitem">
-            <h3>Base Técnica</h3>
-            <p>HTML, CSS y JS autocontenidos, listos para editar y publicar rápidamente.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto" class="section" data-theme="purple" data-bg="nebula" data-endcolor="23,7,40" aria-labelledby="s8-title">
-      <div class="section__inner">
-        <p class="eyebrow">Contacto</p>
-        <h2 id="s8-title" class="title-lg">Hablemos de tu próximo proyecto</h2>
-        <div class="contact-grid">
-          <form class="form" aria-label="Formulario de contacto">
-            <label for="nombre">Nombre</label>
-            <input id="nombre" name="nombre" type="text" autocomplete="name" required />
-            <label for="correo">Correo</label>
-            <input id="correo" name="correo" type="email" autocomplete="email" required />
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" required></textarea>
-            <button class="btn" type="submit">Enviar mensaje</button>
-          </form>
-          <aside class="process-copy">
-            <h3>RAVEKH Studio</h3>
-            <p class="subtitle" style="margin-top:.5rem;">Cuéntanos qué quieres comunicar y diseñamos una landing que convierta visitas en oportunidades reales.</p>
-            <p style="margin-top:1rem;"><strong>Email:</strong> hola@ravekh.com</p>
-            <p><strong>WhatsApp:</strong> +52 445 111 3370</p>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section footer" data-theme="dark" data-bg="zodiac" data-endcolor="5,3,8" aria-labelledby="s9-title">
-      <div class="section__inner">
-        <p class="eyebrow">RAVEKH</p>
-        <h2 id="s9-title" class="title-lg">Lleva tu negocio al siguiente nivel digital.</h2>
-        <p class="subtitle">Una presencia web sólida, elegante y estratégica para destacar en tu mercado.</p>
-        <a class="btn" href="#app">Volver arriba</a>
-      </div>
+        <p class="result" id="proposalResult" aria-live="polite"></p>
+        <!-- Cambia aquí el número de WhatsApp en el enlace -->
+        <a id="whatsBtn" class="btn-link is-hidden" href="https://api.whatsapp.com/send?phone=524451113370&amp;text=S%C3%AD%20quiero%20ser%20tu%20novia%20%F0%9F%92%9B" target="_blank" rel="noopener">Escríbeme</a>
+        <button id="topBtn" class="is-hidden" type="button">Volver arriba</button>
+      </article>
     </section>
   </main>
 
-  <a class="wa-float" href="https://api.whatsapp.com/send?phone=524451113370" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">WA</a>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
 
   <script>
-    (() => {
-      const app = document.getElementById('app');
-      const sections = Array.from(document.querySelectorAll('.section'));
-      const themeMeta = document.querySelector('meta[name="theme-color"]');
-      const animatedTexts = Array.from(document.querySelectorAll('.animated-text'));
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const textTimers = new Map();
+    const phrases = [
+      "Me encantas",
+      "Me haces bien",
+      "Contigo todo se siente diferente"
+    ];
 
-      function setThemeFromSection(section) {
-        if (!section) return;
-        const theme = section.dataset.theme || 'dark';
-        document.body.classList.remove('theme-dark', 'theme-gold', 'theme-purple', 'theme-light');
-        document.body.classList.add(`theme-${theme}`);
-
-        const rgb = section.dataset.endcolor || '5,3,8';
-        if (themeMeta) {
-          themeMeta.setAttribute('content', `rgb(${rgb})`);
-        }
-      }
-
-      function playAnimatedText(block) {
-        if (!block || reduceMotion) return;
-        const words = Array.from(block.children);
-        words.forEach((word) => word.classList.remove('is-visible'));
-        let i = 0;
-        const timer = setInterval(() => {
-          words.forEach((word) => word.classList.remove('is-visible'));
-          words[i].classList.add('is-visible');
-          i = (i + 1) % words.length;
-        }, 1400);
-        textTimers.set(block, timer);
-        words[0].classList.add('is-visible');
-      }
-
-      function stopAnimatedText(block) {
-        const timer = textTimers.get(block);
-        if (timer) clearInterval(timer);
-        textTimers.delete(block);
-        Array.from(block.children).forEach((word) => word.classList.remove('is-visible'));
-      }
-
-      function restartAnimations(section) {
-        if (!section) return;
-        const textBlock = section.querySelector('.animated-text');
-        if (textBlock) {
-          stopAnimatedText(textBlock);
-          playAnimatedText(textBlock);
-        }
-      }
-
-      function observeSections() {
-        const observer = new IntersectionObserver((entries) => {
+    function observeSections() {
+      const app = document.getElementById("app");
+      const sections = document.querySelectorAll(".slide");
+      const observer = new IntersectionObserver(
+        (entries) => {
           entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
             const section = entry.target;
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-              sections.forEach((s) => s.classList.remove('is-active'));
-              section.classList.add('is-active');
-              setThemeFromSection(section);
-              restartAnimations(section);
-            } else {
-              section.classList.remove('is-active');
-              const animated = section.querySelector('.animated-text');
-              if (animated) stopAnimatedText(animated);
-            }
+            sections.forEach((s) => s.classList.remove("in-view"));
+            section.classList.add("in-view");
+            setTheme(section);
+            restartSectionAnimations(section);
           });
-        }, {
-          root: app,
-          threshold: [0.5, 0.75]
-        });
+        },
+        { root: app, threshold: 0.55 }
+      );
+      sections.forEach((section) => observer.observe(section));
+    }
 
-        sections.forEach((section) => observer.observe(section));
+    function setTheme(section) {
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      const bg = section.dataset.bg || "zodiac";
+      const rgb = section.dataset.endcolor || "5,3,8";
+      document.body.classList.remove("bg-zodiac", "bg-stars", "bg-blackGold", "bg-nebula", "bg-aurora", "bg-eternal");
+      document.body.classList.add(`bg-${bg}`);
+      metaTheme?.setAttribute("content", `rgb(${rgb})`);
+    }
+
+    function restartSectionAnimations(section) {
+      const reveals = section.querySelectorAll(".reveal");
+      reveals.forEach((el) => {
+        el.classList.remove("animate-in");
+        void el.offsetWidth;
+        el.classList.add("animate-in");
+      });
+    }
+
+    function handleProposalButtons() {
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const result = document.getElementById("proposalResult");
+      const whatsBtn = document.getElementById("whatsBtn");
+      const topBtn = document.getElementById("topBtn");
+      const confetti = document.getElementById("confetti");
+      const app = document.getElementById("app");
+
+      const launchConfetti = () => {
+        confetti.innerHTML = "";
+        const symbols = ["���", "✨", "⭐", "���", "���"];
+        for (let i = 0; i < 40; i++) {
+          const item = document.createElement("i");
+          item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          item.style.left = `${Math.random() * 100}%`;
+          item.style.animationDuration = `${2.8 + Math.random() * 2.6}s`;
+          item.style.animationDelay = `${Math.random() * 0.5}s`;
+          confetti.appendChild(item);
+        }
+        confetti.classList.add("active");
+        setTimeout(() => confetti.classList.remove("active"), 4600);
+      };
+
+      yesBtn.addEventListener("click", () => {
+        result.textContent = "Sabía que sí ������ Prometo cuidarte, hacerte reír y elegirte todos los días.";
+        whatsBtn.classList.remove("is-hidden");
+        topBtn.classList.add("is-hidden");
+        launchConfetti();
+      });
+
+      noBtn.addEventListener("click", () => {
+        result.textContent = "Está bien, igual quería decírtelo. Gracias por existir ���";
+        topBtn.classList.remove("is-hidden");
+        whatsBtn.classList.add("is-hidden");
+      });
+
+      topBtn.addEventListener("click", () => {
+        app.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    function startTyping() {
+      const target = document.getElementById("typingText");
+      if (!target) return;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduceMotion) {
+        target.textContent = phrases.join(" · ");
+        return;
       }
 
-      document.querySelector('.form')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Gracias. Tu mensaje fue preparado correctamente.');
-      });
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
 
-      sections[0]?.classList.add('is-active');
-      setThemeFromSection(sections[0]);
-      animatedTexts.forEach((block) => {
-        stopAnimatedText(block);
-      });
-      restartAnimations(sections[0]);
-      observeSections();
-    })();
+      const type = () => {
+        const current = phrases[phraseIndex];
+        target.textContent = deleting
+          ? current.slice(0, charIndex--)
+          : current.slice(0, charIndex++);
+
+        let delay = deleting ? 48 : 90;
+        if (!deleting && charIndex > current.length) {
+          deleting = true;
+          delay = 1100;
+        }
+        if (deleting && charIndex < 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          charIndex = 0;
+          delay = 320;
+        }
+        setTimeout(type, delay);
+      };
+      type();
+    }
+
+    observeSections();
+    handleProposalButtons();
+    startTyping();
   </script>
 </body>
 </html>
