@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fiesta de 15 | Momentos inolvidables</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-main">
+    <nav class="topbar glass">
+      <a class="brand" href="index.html">✨ XV Gala</a>
+      <div class="nav-links">
+        <a href="participar.html">Participar</a>
+        <a class="nav-admin" href="admin.html">Administración</a>
+      </div>
+    </nav>
+
+    <header class="hero-15">
+      <p class="kicker">Fiesta de 15 años</p>
+      <h1>Álbum de los mejores momentos</h1>
+      <p class="lead">
+        Bienvenidos a esta noche mágica. Compartamos fotos y mensajes para guardar para siempre
+        cada sonrisa, abrazo y emoción de la quinceañera.
+      </p>
+      <p class="dedication">
+        ✨ Que este nuevo capítulo esté lleno de sueños cumplidos, amor y alegría. ¡Brillas hoy y
+        siempre! ✨
+      </p>
+    </header>
+
+    <main class="main-content">
+      <section class="panel-dark participate-highlight reveal-up">
+        <h2>¿Quieres participar?</h2>
+        <p class="subtext">Sube una foto, deja un mensaje especial y forma parte de este recuerdo.</p>
+        <a class="btn btn-gold pulse" href="participar.html">Participar ahora</a>
+      </section>
+
+      <section class="panel-dark">
+        <div class="section-head">
+          <h2>Galería principal</h2>
+          <p class="subtext">Haz clic en cualquier foto para verla en grande junto a su mensaje.</p>
+        </div>
+        <div id="publicGallery" class="gallery gallery-elegant"></div>
+      </section>
+    </main>
+
+    <template id="cardTemplate">
+      <article class="card card-clickable" role="button" tabindex="0">
+        <div class="img-wrap">
+          <img alt="Foto publicada" />
+        </div>
+        <div class="card-body">
+          <p class="meta"></p>
+          <p class="text"></p>
+        </div>
+      </article>
+    </template>
+
+    <dialog id="photoModal" class="photo-modal">
+      <button id="closeModal" class="modal-close" aria-label="Cerrar">✕</button>
+      <img id="modalImage" alt="Foto ampliada" />
+      <div class="modal-body">
+        <p id="modalMeta" class="meta"></p>
+        <p id="modalText" class="text"></p>
+      </div>
+    </dialog>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

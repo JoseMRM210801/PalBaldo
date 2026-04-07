@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administración | Fiesta de 15</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-admin">
+    <nav class="topbar glass">
+      <a class="brand" href="index.html">✨ XV Gala</a>
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="participar.html">Participar</a>
+      </div>
+    </nav>
+
+    <main class="center-wrap padded-top">
+      <section class="panel-light" id="adminLoginPanel">
+        <h1>Acceso de administración</h1>
+        <p>Ingresa tus credenciales para gestionar aprobación y visibilidad.</p>
+        <form id="adminLoginForm" class="stack">
+          <label>
+            Usuario
+            <input type="text" id="adminUsername" placeholder="admin" required />
+          </label>
+          <label>
+            Contraseña
+            <input type="password" id="adminPassword" placeholder="********" required />
+          </label>
+          <button type="submit" class="btn btn-gold">Ingresar</button>
+        </form>
+      </section>
+
+      <section class="panel-light hidden" id="adminPanel">
+        <div class="section-head">
+          <h2>Gestión de fotos</h2>
+          <p>Decide qué fotos aparecen en la pantalla principal.</p>
+        </div>
+        <div id="adminList" class="admin-grid"></div>
+      </section>
+      <p id="adminStatus" class="status-message" data-type="info"></p>
+    </main>
+
+    <template id="adminItemTemplate">
+      <article class="admin-card">
+        <div class="img-wrap">
+          <img alt="Miniatura" />
+        </div>
+        <div class="card-body">
+          <p class="meta"></p>
+          <p class="text"></p>
+          <span class="badge"></span>
+          <div class="admin-actions">
+            <button type="button" data-action="approve" class="btn btn-gold btn-small">Aprobar</button>
+            <button type="button" data-action="reject" class="btn btn-danger btn-small">Rechazar</button>
+          </div>
+          <label class="switch switch-row">
+            <span>Visible en principal</span>
+            <input type="checkbox" />
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="admin.js"></script>
+  </body>
+</html>
