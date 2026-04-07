@@ -1,74 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#111111" />
-  <title>XV de Ximena | Noche Vaquera</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-
-<body class="theme-main cowboy-home cowboy-bg">
-  <nav class="topbar glass">
-    <a class="brand" href="index.html">🤠 XV Ximena</a>
-    <div class="nav-links">
-      <a href="participar.html">Participar</a>
-      <a class="nav-admin" href="admin.html">Administración</a>
-    </div>
-  </nav>
-
-  <header class="hero-cowboy panel-dark">
-    <p class="kicker">Mis XV años</p>
-    <h1>Noche Vaquera Ximena</h1>
-    <p class="lead hero-text">
-      Bienvenidos al álbum oficial de mis XV años. Aquí reuniremos los recuerdos más especiales de esta noche tan única:
-      baile, sonrisa, abrazos y momentos que merecen quedarse para siempre
-    </p>
-    <p class="hero-subtext">
-      Comparte tus fotos favoritas y deja un mensaje bonito para que esta celebración quede
-      guardada en el corazón de todos.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-gold" href="participar.html">Subir fotos</a>
-    </div>
-  </header>
-
-  <main class="main-content single-page-layout">
-    <section class="panel-dark">
-      <div class="section-head">
-        <h2>Galería principal</h2>
-        <p class="subtext">
-          Solo se muestran fotos aprobadas por administración. Haz clic en una foto para verla en
-          grande junto con su mensaje.
-        </p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111111" />
+    <title>XV de Ximena | Noche Vaquera</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-main cowboy-home cowboy-bg">
+    <nav class="topbar glass">
+      <a class="brand" href="index.html">🤠 XV Ximena</a>
+      <div class="nav-links">
+        <a href="participar.html">Participar</a>
+        <a class="nav-admin" href="admin.html">Administración</a>
       </div>
-      <div id="publicGallery" class="gallery gallery-elegant"></div>
-    </section>
-  </main>
+    </nav>
 
-  <template id="cardTemplate">
-    <article class="card card-clickable" role="button" tabindex="0">
-      <div class="img-wrap">
-        <img alt="Foto publicada" />
+    <header class="hero-cowboy panel-dark">
+      <p class="kicker">Fiesta de 15 años</p>
+      <h1>Noche Vaquera de Ximena</h1>
+      <p class="lead hero-text">
+        Bienvenidos al álbum oficial de los XV de Ximena. Aquí reunimos los recuerdos más
+        especiales de una noche única: baile, sonrisas, abrazos y momentos que merecen quedarse
+        para siempre.
+      </p>
+      <p class="hero-subtext">
+        Comparte tus fotos favoritas y deja un mensaje bonito para que esta celebración quede
+        guardada en el corazón de todos.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="participar.html">Subir fotos</a>
       </div>
-      <div class="card-body">
-        <p class="meta"></p>
-        <p class="text"></p>
+    </header>
+
+    <main class="main-content single-page-layout">
+      <section class="panel-dark">
+        <div class="section-head">
+          <h2>Galería principal</h2>
+          <p class="subtext">
+            Solo se muestran fotos aprobadas por administración. Haz clic en una foto para verla en
+            grande junto con su mensaje.
+          </p>
+        </div>
+        <div id="publicGallery" class="gallery gallery-elegant"></div>
+      </section>
+    </main>
+
+    <template id="cardTemplate">
+      <article class="card card-clickable" role="button" tabindex="0">
+        <div class="img-wrap">
+          <img alt="Foto publicada" />
+        </div>
+        <div class="card-body">
+          <p class="meta"></p>
+          <p class="text"></p>
+        </div>
+      </article>
+    </template>
+
+    <dialog id="photoModal" class="photo-modal">
+      <button id="closeModal" class="modal-close" aria-label="Cerrar">✕</button>
+      <img id="modalImage" alt="Foto ampliada" />
+      <div class="modal-body">
+        <p id="modalMeta" class="meta"></p>
+        <p id="modalText" class="text"></p>
       </div>
-    </article>
-  </template>
+    </dialog>
 
-  <dialog id="photoModal" class="photo-modal">
-    <button id="closeModal" class="modal-close" aria-label="Cerrar">✕</button>
-    <img id="modalImage" alt="Foto ampliada" />
-    <div class="modal-body">
-      <p id="modalMeta" class="meta"></p>
-      <p id="modalText" class="text"></p>
-    </div>
-  </dialog>
-
-  <script type="module" src="main.js"></script>
-</body>
-
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
