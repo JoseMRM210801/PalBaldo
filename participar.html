@@ -18,7 +18,7 @@
     <main class="center-wrap padded-top">
       <section class="panel-light floating" id="loginPanel">
         <h1>Iniciar sesión para participar</h1>
-        <p>Ingresa tu nombre para enviar una foto y un mensaje para la quinceañera.</p>
+        <p>Ingresa tu nombre para enviar fotos y mensajes para la quinceañera.</p>
         <form id="loginForm" class="stack">
           <label>
             Nombre
@@ -29,17 +29,17 @@
       </section>
 
       <section class="panel-light hidden reveal-up" id="uploadPanel">
-        <h2>Comparte tu mejor momento</h2>
+        <h2>Comparte tus mejores momentos</h2>
         <form id="uploadForm" class="stack">
           <label class="upload-box">
-            <span class="upload-title">Fotografía</span>
-            <input type="file" id="photo" accept="image/*" required />
-            <span class="upload-help">Selecciona una imagen para vista previa inmediata.</span>
+            <span class="upload-title">Fotografías</span>
+            <input type="file" id="photo" accept="image/*" multiple required />
+            <span class="upload-help">Puedes seleccionar varias imágenes al mismo tiempo.</span>
           </label>
 
           <figure class="preview-card" id="previewCard">
-            <img id="previewImage" alt="Vista previa" />
-            <figcaption>Vista previa de tu foto</figcaption>
+            <div id="previewGrid" class="preview-grid"></div>
+            <figcaption>Vista previa de tus fotos</figcaption>
           </figure>
 
           <label>

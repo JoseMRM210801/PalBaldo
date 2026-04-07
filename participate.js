@@ -10,8 +10,8 @@ const uploadForm = document.getElementById("uploadForm");
 const loginNameInput = document.getElementById("loginName");
 const photoInput = document.getElementById("photo");
 const messageInput = document.getElementById("message");
-const previewImage = document.getElementById("previewImage");
 const previewCard = document.getElementById("previewCard");
+const previewGrid = document.getElementById("previewGrid");
 const participantStatus = document.getElementById("participantStatus");
 const loginButton = loginForm.querySelector("button[type='submit']");
 const uploadButton = uploadForm.querySelector("button[type='submit']");
@@ -31,10 +31,31 @@ function showUploadPanel() {
   uploadPanel.classList.remove("hidden");
 }
 
+function renderPreview(files) {
+  previewGrid.innerHTML = "";
+  if (!files.length) {
+    previewCard.classList.remove("show-preview");
+    return;
+  }
+
+  files.forEach((file) => {
+    const img = document.createElement("img");
+    img.alt = file.name;
+    const reader = new FileReader();
+    reader.onload = () => {
+      img.src = String(reader.result);
+    };
+    reader.readAsDataURL(file);
+    previewGrid.appendChild(img);
+  });
+
+  previewCard.classList.add("show-preview");
+}
+
 const existingSession = getParticipantSession();
 if (existingSession?.participantId && existingSession?.sessionToken) {
   showUploadPanel();
-  setStatus(`Sesión activa como ${existingSession.name}. Ya puedes subir tu foto.`, "success");
+  setStatus(`Sesión activa como ${existingSession.name}. Ya puedes subir tus fotos.`, "success");
 }
 
 loginForm.addEventListener("submit", async (event) => {
@@ -60,7 +81,7 @@ loginForm.addEventListener("submit", async (event) => {
     });
 
     showUploadPanel();
-    setStatus("Acceso correcto. Ahora sube tu foto y mensaje.", "success");
+    setStatus("Acceso correcto. Ahora sube tus fotos y mensaje.", "success");
   } catch (error) {
     setStatus(error.message || "No fue posible iniciar sesión.", "error");
   } finally {
@@ -69,20 +90,13 @@ loginForm.addEventListener("submit", async (event) => {
 });
 
 photoInput.addEventListener("change", () => {
-  const file = photoInput.files?.[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    previewImage.src = String(reader.result);
-    previewCard.classList.add("show-preview");
-  };
-  reader.readAsDataURL(file);
+  const files = Array.from(photoInput.files || []);
+  renderPreview(files);
 });
 
 uploadForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const file = photoInput.files?.[0];
+  const files = Array.from(photoInput.files || []);
   const message = messageInput.value.trim();
   const session = getParticipantSession();
 
@@ -91,43 +105,50 @@ uploadForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  if (!file) {
-    setStatus("Selecciona una fotografía antes de enviar.", "error");
+  if (!files.length) {
+    setStatus("Selecciona al menos una fotografía antes de enviar.", "error");
     return;
   }
 
   if (!message) {
-    setStatus("Escribe un mensaje para acompañar la foto.", "error");
+    setStatus("Escribe un mensaje para acompañar tus fotos.", "error");
     return;
   }
 
   setButtonLoading(uploadButton, true, "Subiendo...", "Enviar para aprobación");
 
   try {
-    setStatus("Subiendo imagen a Cloudinary...", "info");
-    const uploaded = await uploadImageToCloudinary(file);
+    let sentCount = 0;
 
-    setStatus("Registrando foto en el backend...", "info");
-    await createPhotoRecord(
-      {
-        eventId: EVENT_ID,
-        participantId: session.participantId,
-        imageUrl: uploaded.secureUrl,
-        thumbnailUrl: uploaded.thumbnailUrl,
-        originalFilename: uploaded.originalFilename,
-        mimeType: uploaded.mimeType,
-        fileSize: uploaded.fileSize,
-        message,
-      },
-      session.sessionToken
-    );
+    for (let index = 0; index < files.length; index += 1) {
+      const file = files[index];
+      setStatus(`Subiendo imagen ${index + 1} de ${files.length} a Cloudinary...`, "info");
+      const uploaded = await uploadImageToCloudinary(file);
+
+      setStatus(`Registrando imagen ${index + 1} en el backend...`, "info");
+      await createPhotoRecord(
+        {
+          eventId: EVENT_ID,
+          participantId: session.participantId,
+          imageUrl: uploaded.secureUrl,
+          thumbnailUrl: uploaded.thumbnailUrl,
+          originalFilename: uploaded.originalFilename,
+          mimeType: uploaded.mimeType,
+          fileSize: uploaded.fileSize,
+          message,
+        },
+        session.sessionToken
+      );
+
+      sentCount += 1;
+    }
 
     uploadForm.reset();
     previewCard.classList.remove("show-preview");
-    previewImage.src = "";
-    setStatus("¡Foto enviada correctamente! Quedará pendiente de aprobación.", "success");
+    previewGrid.innerHTML = "";
+    setStatus(`¡Listo! Se enviaron ${sentCount} foto(s) para aprobación.`, "success");
   } catch (error) {
-    setStatus(error.message || "No se pudo completar el envío.", "error");
+    setStatus(error.message || "No se pudo completar el envío de fotos.", "error");
   } finally {
     setButtonLoading(uploadButton, false, "Subiendo...", "Enviar para aprobación");
   }
