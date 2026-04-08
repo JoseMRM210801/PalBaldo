@@ -68,7 +68,7 @@ body {
 }
 
 .nav-admin {
-  background: rgba(212, 175, 55, 0.12);
+  background: rgba(212, 175, 55, 0.05);
   border-color: rgba(212, 175, 55, 0.42) !important;
 }
 
@@ -122,14 +122,14 @@ h2 {
 }
 
 .panel-dark {
-  background: linear-gradient(170deg, rgba(25, 25, 31, 0.76), rgba(17, 17, 21, 0.68));
+  background: linear-gradient(170deg, rgba(25, 25, 31, 0.38), rgba(17, 17, 21, 0.32));
   padding: 1.1rem;
 }
 
 .panel-light {
   width: min(760px, 94vw);
   margin: 2rem auto;
-  background: linear-gradient(170deg, rgba(32, 32, 40, 0.74), rgba(26, 26, 33, 0.64));
+  background: linear-gradient(170deg, rgba(32, 32, 40, 0.36), rgba(26, 26, 33, 0.28));
   padding: 1.1rem;
 }
 
@@ -245,7 +245,7 @@ textarea {
   border: 1px solid rgba(212, 175, 55, 0.4);
   border-radius: 10px;
   padding: 0.7rem;
-  background: rgba(18, 18, 25, 0.55);
+  background: rgba(18, 18, 25, 0.2);
   color: var(--white);
 }
 
@@ -256,7 +256,7 @@ button {
 .upload-box {
   border: 1px dashed rgba(212, 175, 55, 0.58);
   border-radius: 12px;
-  background: rgba(212, 175, 55, 0.12);
+  background: rgba(212, 175, 55, 0.05);
   padding: 0.9rem;
 }
 
@@ -274,7 +274,7 @@ button {
   margin: 0;
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 12px;
-  background: rgba(18, 18, 24, 0.5);
+  background: rgba(18, 18, 24, 0.18);
   padding: 0.6rem;
   display: none;
 }
