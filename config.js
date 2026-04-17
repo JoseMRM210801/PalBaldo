@@ -1,6 +1,6 @@
 export const API_BASE_URL = 
-"http://192.168.1.12:8090/api";
-//"https://ravekhpos-back-production-3559.up.railway.app/api";
+//"http://192.168.1.12:8090/api";
+"https://ravekhpos-back-production-3559.up.railway.app/api";
 export const EVENT_ID = 1;
 
 export const CLOUDINARY_CLOUD_NAME = "dvvbbmug9";

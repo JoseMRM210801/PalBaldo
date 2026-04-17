@@ -740,3 +740,39 @@ button:disabled {
   border-radius: 8px;
   border: 1px solid rgba(214, 178, 94, 0.35);
 }
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  background: rgba(14, 14, 16, 0.8);
+  color: var(--gold-soft);
+  border-radius: 999px;
+  width: 42px;
+  height: 42px;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+
+.modal-prev {
+  left: 0.6rem;
+}
+
+.modal-next {
+  right: 0.6rem;
+}
+
+.modal-counter {
+  margin-top: 0.5rem;
+  color: var(--gold-soft);
+  font-size: 0.86rem;
+  text-align: right;
+}
+
+#modalImage {
+  cursor: ew-resize;
+}
