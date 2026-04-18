@@ -16,6 +16,27 @@ const adminList = document.getElementById("adminList");
 const adminTemplate = document.getElementById("adminItemTemplate");
 const adminStatus = document.getElementById("adminStatus");
 const loginButton = adminLoginForm.querySelector("button[type='submit']");
+const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+
+let selectedFilter = "all";
+
+
+function photoMatchesFilter(photo, filter) {
+  const { isApproved, isRejected } = getPhotoState(photo);
+
+  if (filter === "approved") return isApproved && !isRejected;
+  if (filter === "rejected") return isRejected;
+
+  return true;
+}
+
+function updateFilterButtons() {
+  filterButtons.forEach((button) => {
+    const isActive = button.dataset.filter === selectedFilter;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
 
 function setAdminStatus(message, type = "info") {
   adminStatus.textContent = message;
@@ -74,7 +95,15 @@ function renderAdminList(photos) {
     return;
   }
 
-  photos.forEach((photo) => {
+  const filteredPhotos = photos.filter((photo) => photoMatchesFilter(photo, selectedFilter));
+
+  if (!filteredPhotos.length) {
+    const label = selectedFilter === "approved" ? "aprobadas" : "rechazadas";
+    adminList.innerHTML = `<p class="empty">No hay fotos ${label} para mostrar.</p>`;
+    return;
+  }
+
+  filteredPhotos.forEach((photo) => {
     const item = adminTemplate.content.firstElementChild.cloneNode(true);
     const state = getPhotoState(photo);
 
@@ -145,6 +174,17 @@ function renderAdminList(photos) {
     adminList.appendChild(item);
   });
 }
+
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    selectedFilter = button.dataset.filter || "all";
+    updateFilterButtons();
+    refreshAdminPhotos();
+  });
+});
+
+updateFilterButtons();
 
 adminLoginForm.addEventListener("submit", async (event) => {
   event.preventDefault();

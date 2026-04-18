@@ -37,6 +37,16 @@
           <h2>Gestión de fotos</h2>
           <p>Decide qué fotos aparecen en la pantalla principal.</p>
         </div>
+
+        <section class="admin-filters" aria-label="Filtros de estado">
+          <p class="admin-filters-title">Filtrar por estado</p>
+          <div class="admin-filter-buttons" role="group" aria-label="Estado de fotos">
+            <button type="button" class="btn btn-filter is-active" data-filter="all">Todas</button>
+            <button type="button" class="btn btn-filter" data-filter="approved">Aprobadas</button>
+            <button type="button" class="btn btn-filter" data-filter="rejected">Rechazadas</button>
+          </div>
+        </section>
+
         <div id="adminList" class="admin-grid"></div>
       </section>
       <p id="adminStatus" class="status-message" data-type="info"></p>

@@ -249,6 +249,24 @@ textarea {
   color: var(--white);
 }
 
+input[type="text"],
+input[type="password"],
+input[type="file"],
+textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+input[type="file"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 0.55rem;
+}
+
 button {
   cursor: pointer;
 }
@@ -399,6 +417,41 @@ button {
   border-radius: 999px;
   width: 34px;
   height: 34px;
+}
+
+
+.admin-filters {
+  margin-bottom: 0.95rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.admin-filters-title {
+  margin: 0 0 0.55rem;
+  color: var(--gold-soft);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.admin-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn-filter {
+  background: transparent;
+  border-color: rgba(212, 175, 55, 0.4);
+  color: var(--gold-soft);
+  padding: 0.45rem 0.9rem;
+}
+
+.btn-filter.is-active {
+  background: linear-gradient(140deg, #f0d683, var(--gold));
+  color: #271b01;
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
 }
 
 .admin-grid {
@@ -775,4 +828,66 @@ button:disabled {
 
 #modalImage {
   cursor: ew-resize;
+}
+
+@media (max-width: 640px) {
+  .theme-participate #loginPanel,
+  .theme-participate #uploadPanel {
+    width: min(94vw, 520px);
+    margin-inline: auto;
+  }
+
+  .theme-participate #loginPanel,
+  .theme-participate #uploadPanel,
+  .theme-participate #uploadPanel h2,
+  .theme-participate #uploadPanel + .status-message {
+    text-align: center;
+  }
+
+  .theme-participate #loginForm,
+  .theme-participate #uploadForm {
+    justify-items: center;
+  }
+
+  .theme-participate #loginForm > label,
+  .theme-participate #uploadForm > label,
+  .theme-participate #uploadForm > .upload-box,
+  .theme-participate #uploadForm > .preview-card,
+  .theme-participate #uploadForm > button,
+  .theme-participate #uploadPanel > .link {
+    width: min(100%, 430px);
+  }
+
+  .theme-participate #uploadPanel > .link {
+    display: inline-block;
+    margin-top: 0.45rem;
+  }
+
+  .theme-participate #uploadPanel {
+    padding: 0.9rem;
+  }
+
+  .theme-participate #uploadPanel h2 {
+    font-size: clamp(1.6rem, 7.6vw, 2rem);
+  }
+
+  .theme-participate #uploadForm input[type="file"] {
+    font-size: clamp(0.72rem, 3.3vw, 0.88rem);
+    line-height: 1.2;
+  }
+
+  .theme-participate #uploadForm input[type="file"]::file-selector-button {
+    padding: 0.4rem 0.58rem;
+    margin-right: 0.4rem;
+    font-size: 0.82rem;
+  }
+
+  .theme-participate #uploadForm textarea {
+    font-size: clamp(0.95rem, 3.7vw, 1rem);
+  }
+
+  .theme-participate #uploadForm > button {
+    font-size: clamp(1rem, 4.2vw, 1.12rem);
+    padding-block: 0.75rem;
+  }
 }
